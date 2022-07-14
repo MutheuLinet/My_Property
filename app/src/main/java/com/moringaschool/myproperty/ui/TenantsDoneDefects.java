@@ -64,7 +64,9 @@ public class TenantsDoneDefects extends AppCompatActivity implements View.OnClic
                     tenBind.myRec.setAdapter(adp);
                     tenBind.myRec.setLayoutManager(new LinearLayoutManager(TenantsDoneDefects.this));
                     tenBind.myRec.setHasFixedSize(true);
+                    successful();
                 }else{
+                    unSuccessful();
                     tenBind.title.setText("There are no done defects Currently");
                 }
 
@@ -72,6 +74,7 @@ public class TenantsDoneDefects extends AppCompatActivity implements View.OnClic
 
             @Override
             public void onFailure(Call<List<DoneDefect>> call, Throwable t) {
+                unSuccessful();
                 String error = t.getMessage();
                 Toast.makeText(TenantsDoneDefects.this, error, Toast.LENGTH_SHORT).show();
             }
@@ -114,5 +117,27 @@ public class TenantsDoneDefects extends AppCompatActivity implements View.OnClic
             startActivity(new Intent(this, TenantDefectActivity.class));
         }
 
+    }
+
+    public void successful(){
+        tenBind.progress.setVisibility(View.GONE);
+        tenBind.animationView.setVisibility(View.VISIBLE);
+        tenBind.profileImage.setVisibility(View.VISIBLE);
+        tenBind.logo.setVisibility(View.VISIBLE);
+        tenBind.cont1.setVisibility(View.VISIBLE);
+        tenBind.myRec.setVisibility(View.VISIBLE);
+        tenBind.add.setVisibility(View.VISIBLE);
+        tenBind.title.setVisibility(View.VISIBLE);
+    }
+
+    public void unSuccessful(){
+        tenBind.progress.setVisibility(View.VISIBLE);
+        tenBind.animationView.setVisibility(View.GONE);
+        tenBind.profileImage.setVisibility(View.GONE);
+        tenBind.logo.setVisibility(View.GONE);
+        tenBind.cont1.setVisibility(View.GONE);
+        tenBind.myRec.setVisibility(View.GONE);
+        tenBind.add.setVisibility(View.GONE);
+        tenBind.title.setVisibility(View.GONE);
     }
 }
