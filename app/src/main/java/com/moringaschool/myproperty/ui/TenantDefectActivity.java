@@ -38,6 +38,7 @@ import com.moringaschool.myproperty.databinding.ActivityDefectPostBinding;
 import com.moringaschool.myproperty.databinding.ActivityTenantDefectBinding;
 import com.moringaschool.myproperty.models.Constants;
 import com.moringaschool.myproperty.models.Defect;
+import com.moringaschool.myproperty.models.Validator;
 
 import java.io.IOException;
 
@@ -114,9 +115,8 @@ public class TenantDefectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //validate input fields
-                if (mainBind.buildingNameET.getEditText().toString().isEmpty() || mainBind.houseNumberET.getEditText().toString().isEmpty()
-                        || mainBind.buildingNameET.getEditText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please insert all input fields", Toast.LENGTH_SHORT).show();
+                if (!Validator.validateName(mainBind.defectDescriptionEditText)) {
+                    return;
                 } else {
                     uploadImage();
                     mainBind.submitDefectBtn.setEnabled(false);
