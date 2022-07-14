@@ -7,6 +7,7 @@
     tools:context=".ui.PropertiesActivity">
 
     <com.airbnb.lottie.LottieAnimationView
+        app:layout_constraintVertical_chainStyle="spread_inside"
         android:id="@+id/animation_view"
         android:layout_width="150dp"
         android:layout_height="100dp"
@@ -30,8 +31,7 @@
         app:layout_constraintRight_toLeftOf="@id/animation_view"
         app:layout_constraintBottom_toBottomOf="@id/animation_view"
         app:strokeWidth="1dp"
-        app:shapeAppearanceOverlay="@style/roundedImageView"
-        app:strokeColor="@color/black" />
+        app:strokeColor="@color/white" />
 
     <TextView
         android:id="@+id/logo"
@@ -49,32 +49,31 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
+        android:visibility="gone"
+        android:id="@+id/cont1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:background="@drawable/layout"
         android:backgroundTint="@color/blue1"
-        android:id="@+id/cont1"
-        android:layout_margin="8dp"
-        android:layout_width="match_parent"
         android:paddingBottom="8dp"
-        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/animation_view"
-        app:layout_constraintBottom_toTopOf="@id/title">
-
+        app:layout_constraintTop_toBottomOf="@id/animation_view">
 
 
         <TextView
-            android:layout_margin="8dp"
             android:id="@+id/manager_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:text="Hey, Collins"
-            android:textSize="15sp"
             android:textColor="@color/white"
+            android:textSize="15sp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/description"
@@ -85,21 +84,22 @@
             android:textSize="12sp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="@id/manager_name"
-            app:layout_constraintTop_toBottomOf="@id/manager_name"/>
+            app:layout_constraintTop_toBottomOf="@id/manager_name" />
 
         <androidx.appcompat.widget.SearchView
-            android:background="@drawable/layout"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/white"
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/layout"
+            android:backgroundTint="@color/white"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="@id/description"
-            app:layout_constraintTop_toBottomOf="@id/description"/>
+            app:layout_constraintTop_toBottomOf="@id/description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
+        android:visibility="gone"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,6 +112,7 @@
         app:layout_constraintBottom_toTopOf="@+id/myRec"/>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:adjustViewBounds="true"
@@ -128,7 +129,7 @@
         android:id="@+id/myRec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:visibility="gone"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title"
@@ -137,10 +138,13 @@
 
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Maintainance Requests"
+        android:text="Maintenance Requests"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintRight_toLeftOf="@id/add2"
@@ -161,6 +165,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/title2"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/recView"
         android:layout_height="0dp"
         android:layout_width="match_parent"
@@ -169,12 +174,24 @@
         app:layout_constraintTop_toBottomOf="@id/title2"
         app:layout_constraintBottom_toTopOf="@id/bottom"/>
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom"
-        android:background="@color/gold"
+        android:background="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/navigation"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/gold"
+        app:itemTextColor="@color/gold"
         app:layout_constraintTop_toBottomOf="@id/recView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

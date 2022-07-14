@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blue">#003049</color>
+    <color name="light_blue">#EBF4FA</color>
     <color name="blue1">#0D577E</color>
     <color name="gold">#dca85e</color>
     <color name="dark_grey">#515151</color>
@@ -11,4 +12,9 @@
     <color name="shocking_pink">#fc0fc0</color>
     <color name="neon_orange">#FF5F1F</color>
     <color name="lime_green">#40A316</color>
+    <color name="peach">#FFDCAA</color>
+    <color name="matte_grey">#98989c</color>
+    <color name="light_peach">#FFF1DD</color>
+    <color name="navy_blue">#000000</color>
+    <color name="color_frag">#EAE6E6</color>
 </resources>

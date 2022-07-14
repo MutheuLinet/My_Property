@@ -1,6 +1,5 @@
 package com.moringaschool.myproperty.ui;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,11 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.myproperty.databinding.AddPropertyManagerBinding;
@@ -23,6 +18,9 @@ import com.moringaschool.myproperty.api.RetrofitClient;
 import com.moringaschool.myproperty.models.Constants;
 import com.moringaschool.myproperty.models.Property;
 import com.moringaschool.myproperty.models.PropertyManager;
+import com.moringaschool.myproperty.models.Validator;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +35,8 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
     DatabaseReference ref;
     SharedPreferences myData;
     SharedPreferences.Editor myDataEditor;
+    Property property;
+    PropertyManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,25 +50,30 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
         addBind.submit.setOnClickListener(this);
         myAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
-
     }
 
     @Override
     public void onClick(View v) {
+
         ApiCalls calls = RetrofitClient.getClient();
 
         String name = addBind.managerName.getEditText().getText().toString().trim();
         String number = addBind.managerPhone.getEditText().getText().toString().trim();
         String email = addBind.managerEmail.getEditText().getText().toString().trim();
         String propertyName = addBind.managerHouseName.getEditText().getText().toString().trim();
-        String propertyDescription = addBind.propertyDescription.getEditText().getText().toString().trim();
+        String propertyLocation = addBind.propertyDescription.getEditText().getText().toString().trim();
         String password = addBind.propertyManagerPassword.getEditText().getText().toString().trim();
 
+        if(!Validator.validateName(addBind.managerName) || !Validator.validatePhone(addBind.managerPhone) || !Validator.validateEmail(addBind.managerEmail) || !Validator.validateName(addBind.managerHouseName) || !Validator.validateName(addBind.propertyDescription) || !Validator.validatePass(addBind.propertyManagerPassword) || !Validator.validatePassword(addBind.propertyManagerPassword,addBind.propertyConfirmPassword)){
+            return;
+        }
+
         myDataEditor.putString(Constants.NAME, name).apply();
+        myDataEditor.putString(Constants.PHONE_NUMBER, number).apply();
+        myDataEditor.putString(Constants.EMAIL, email).apply();
 
-        PropertyManager manager = new PropertyManager(name, number, email, propertyName, propertyDescription);
-        Property property = new Property(propertyName, name);
-
+        manager = new PropertyManager(name, number, email);
+        property = new Property(propertyName, name, propertyLocation);
 
         call1 = calls.addManager(manager);
         call2 = calls.addProperty(property);
@@ -76,7 +81,38 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<PropertyManager> call, Response<PropertyManager> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(AddManagerActivity.this, "Tunaelekea", Toast.LENGTH_SHORT).show();
+
+                    call2.enqueue(new Callback<Property>() {
+                        @Override
+                        public void onResponse(Call<Property> call, Response<Property> response) {
+                            if (response.isSuccessful()){
+
+                                myAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()){
+
+                                        Intent intent = new Intent(AddManagerActivity.this, PropertiesActivity.class);
+                                        intent.putExtra("managerName", name);
+                                        Toast.makeText(AddManagerActivity.this, "User created successfully "+name, Toast.LENGTH_SHORT).show();
+
+                                        startActivity(intent);
+                                    }
+                                });
+
+
+                            }else{
+                                Toast.makeText(AddManagerActivity.this, "User not created successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Property> call, Throwable t) {
+                            String error = t.getMessage();
+                            Toast.makeText(AddManagerActivity.this, error, Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+                    Toast.makeText(AddManagerActivity.this, "Manager Added", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(AddManagerActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
                 }
@@ -91,36 +127,6 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-        call2.enqueue(new Callback<Property>() {
-            @Override
-            public void onResponse(Call<Property> call, Response<Property> response) {
-                if (response.isSuccessful()){
-
-                    myAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                        if (task.isSuccessful()){
-
-                            Intent intent = new Intent(AddManagerActivity.this, ManagerDashboardActivity.class);
-                            intent.putExtra("managerName", name);
-                            Toast.makeText(AddManagerActivity.this, "User created successfully "+name, Toast.LENGTH_SHORT).show();
-
-                            startActivity(intent);
-                            Toast.makeText(AddManagerActivity.this, "Kuja Wewe", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
-                }else{
-                    Toast.makeText(AddManagerActivity.this, "Sema Kabisa", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Property> call, Throwable t) {
-                String error = t.getMessage();
-                Toast.makeText(AddManagerActivity.this, error, Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
     }
 }

@@ -38,7 +38,7 @@ public class ManagerDashboardActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v) {
         if (v == mainBind.listOfPropertiesCard){
-            Intent intent =  new Intent(ManagerDashboardActivity.this, PropertiesActivity.class);
+            Intent intent =  new Intent(ManagerDashboardActivity.this, DefectActivity.class);
             intent.putExtra("managerName", managerName);
             startActivity(intent);
         }else if (v == mainBind.maintenanceRequestCard){

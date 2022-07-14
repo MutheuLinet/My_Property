@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/layout"
+    android:layout_margin="16dp"
+    android:layout_marginBottom="20dp"
+    android:backgroundTint="@color/color_frag">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/logoTenant"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/whitelogo"
+        android:contentDescription="Logo Tenant"
+        app:layout_constraintStart_toStartOf="@id/submit"
+        app:layout_constraintEnd_toEndOf="@id/submit"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/unit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoTenant"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter unit name " />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/unit_rooms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unit_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter the number of unit rooms " />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit"
+        android:text="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="@id/unit_rooms"
+        app:layout_constraintTop_toBottomOf="@id/unit_rooms"
+        app:layout_constraintEnd_toEndOf="@id/unit_rooms"/>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

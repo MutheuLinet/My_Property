@@ -11,12 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.myproperty.R;
-import com.moringaschool.myproperty.ui.PropertyDetailsActivity;
 import com.moringaschool.myproperty.models.Property;
+import com.moringaschool.myproperty.ui.PropertyDetailsActivity;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 
 public class PropertyRecAdapter extends RecyclerView.Adapter<PropertyRecAdapter.myHolder> {
 
@@ -48,12 +47,13 @@ public class PropertyRecAdapter extends RecyclerView.Adapter<PropertyRecAdapter.
 
     public class myHolder extends RecyclerView.ViewHolder {
 
-        TextView name;
+        TextView name, description, occupied;
 
         public myHolder(@NonNull View itemView) {
             super(itemView);
             name =  itemView.findViewById(R.id.name);
-//            description =  itemView.findViewById(R.id.propertyDescription);
+            description =  itemView.findViewById(R.id.propertyDescription);
+            occupied = itemView.findViewById(R.id.occupied);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,8 +72,8 @@ public class PropertyRecAdapter extends RecyclerView.Adapter<PropertyRecAdapter.
         public void setPropertyData(Property property){
 
             name.setText(property.getProperty_name().toUpperCase());
-//            description.setText("This property belongs to: " + property.getManager_name());
-
+            description.setText(property.getProperty_location());
+//            occupied.setText(property.getManager_name());
         }
     }
 }

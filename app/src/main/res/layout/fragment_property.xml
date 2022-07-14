@@ -6,132 +6,151 @@ android:layout_height="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 tools:context=".fragments.PropertyFragment">
 
-<com.google.android.material.imageview.ShapeableImageView
-    android:id="@+id/image"
-    android:src="@drawable/property"
-    android:adjustViewBounds="true"
-    android:layout_margin="16dp"
-    android:layout_width="0dp"
-    android:layout_height="150dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"/>
-<TextView
-    android:id="@+id/cat_name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textStyle="bold"
-    android:textSize="15sp"
-    android:text="Category Name"
-    app:layout_constraintTop_toBottomOf="@id/image"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"/>
-
-<TextView
-    android:id="@+id/quest_name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Category Name"
-    android:textStyle="bold"
-    android:textSize="20sp"
-    android:layout_margin="8dp"
-    app:layout_constraintTop_toBottomOf="@id/cat_name"
-    app:layout_constraintLeft_toLeftOf="parent"/>
-
-<TextView
-    android:id="@+id/quest_type"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:text="Category Name"
-    app:layout_constraintTop_toBottomOf="@id/quest_name"
-    app:layout_constraintLeft_toLeftOf="parent"/>
-
-<TextView
-    android:id="@+id/quest_ans"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:textColor="@color/blue"
-    android:text="Category Name"
-    app:layout_constraintTop_toBottomOf="@id/quest_type"
-    app:layout_constraintLeft_toLeftOf="parent"/>
-
-<TextView
-    android:id="@+id/quest_mode"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:textColor="@color/blue"
-    android:text="Category Name"
-    app:layout_constraintTop_toBottomOf="@id/quest_ans"
-    app:layout_constraintLeft_toLeftOf="parent"/>
-
-
-
-<LinearLayout
-    android:id="@+id/lay"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:layout_constraintTop_toBottomOf="@id/quest_mode"
-    app:layout_constraintRight_toRightOf="parent">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cat_name"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/property"/>
 
     <TextView
-        android:id="@+id/quest_inco"
+        android:id="@+id/cat_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Category Name"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/animation_view"
+        app:layout_constraintBottom_toTopOf="@id/cont1"
+        app:layout_constraintStart_toStartOf="@id/cont1"
+        app:layout_constraintRight_toLeftOf="@id/add"/>
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintLeft_toRightOf="@id/cat_name"
+        app:layout_constraintTop_toTopOf="@id/cat_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/cat_name"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_margin="4dp"
+        android:id="@+id/cont1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout"
+        android:backgroundTint="@color/blue1"
+        app:layout_constraintTop_toBottomOf="@id/cat_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/units">
+
+        <TextView
+            android:id="@+id/quest_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="Category Name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/animation_view2"/>
+
+        <TextView
+            android:id="@+id/quest_ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/phone"
+            android:drawableTint="@color/gold"
+            android:drawablePadding="2dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:text="Category Name"
+            app:layout_constraintTop_toBottomOf="@id/quest_type"
+            app:layout_constraintStart_toStartOf="@id/quest_type"
+            app:layout_constraintRight_toRightOf="@id/quest_type"/>
+        <TextView
+            android:id="@+id/quest_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:drawableTint="@color/gold"
+            android:drawablePadding="2dp"
+            android:drawableStart="@drawable/mail"
+            android:text="Category Name"
+            app:layout_constraintTop_toBottomOf="@id/quest_ans"
+            app:layout_constraintStart_toStartOf="@id/quest_ans"/>
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            android:textColor="@color/white"
+            android:drawableTint="@color/gold"
+            android:drawablePadding="2dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/location"
+            app:layout_constraintTop_toBottomOf="@id/quest_mode"
+            app:layout_constraintStart_toStartOf="@id/quest_mode"/>
+
+        <ImageView
+            android:id="@+id/animation_view2"
+            android:layout_width="130dp"
+            android:layout_height="0dp"
+            android:src="@drawable/houses"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/quest_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/property" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/units"
+        android:text="Property Units"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cont1"
+        app:layout_constraintStart_toStartOf="@id/cat_name"
         android:layout_marginTop="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choices"
-        android:textStyle="bold" />
+        app:layout_constraintBottom_toTopOf="@id/cont2"/>
 
-    <TextView
-        android:id="@+id/quest_ans1"
-        android:layout_margin="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category Name"
-        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cont2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/units"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:id="@+id/quest_ans2"
-        android:layout_width="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_height="wrap_content"
-        android:text="Category Name"
-        app:layout_constraintTop_toBottomOf="@id/quest_ans1"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/quest_ans3"
-        android:layout_margin="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category Name"
-        />
-    <Button
-        android:id="@+id/addTenant"
-        android:text="Add a tenant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <!--        <TextView-->
-    <!--            android:id="@+id/quest_ans4"-->
-    <!--            android:layout_margin="8dp"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Category Name"-->
-    <!--            />-->
-
-</LinearLayout>
-
-<!--    <com.google.android.material.button.MaterialButton-->
-<!--        android:id="@+id/save"-->
-<!--        android:text="Save to favourites"-->
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom"-->
+<!--        android:background="@color/gold"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="16dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/lay"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+<!--        app:menu="@menu/navigation"-->
+<!--        app:labelVisibilityMode="labeled"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

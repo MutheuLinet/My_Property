@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.moringaschool.myproperty">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,19 +19,38 @@
         android:theme="@style/Theme.MyProperty"
         tools:targetApi="31">
         <activity
-            android:name=".ui.DefectActivity"
+            android:name=".ui.UnitDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ManagerDashboardActivity2"
+            android:name=".ui.ManagersDoneDefects"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TenantsDoneDefects"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TenantMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TenantsDefectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DefectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TenantLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TenantDefectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TenantDashboardActivity"
             android:exported="false" />
         <activity
             android:name=".ui.PropertyDetailsActivity"
-
             android:exported="false" />
         <activity
             android:name=".ui.AddManagerActivity"
             android:exported="false" />
-       
         <activity
             android:name=".ui.PropertiesActivity"
             android:exported="false" />
@@ -43,11 +61,20 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.SelectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DefectActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.ManagerDashboardActivity"
             android:exported="false" />
-
-        <activity android:name=".ui.LoginActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ui.ManagerLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TenantLoginActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true">

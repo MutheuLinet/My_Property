@@ -47,9 +47,9 @@ public class DefectActivity extends AppCompatActivity {
                 }
 
                 adapter = new DefectRecAdapter(allDefects, DefectActivity.this);
-                defBind.myReCView.setAdapter(adapter);
-                defBind.myReCView.setLayoutManager(new LinearLayoutManager(DefectActivity.this));
-                defBind.myReCView.setHasFixedSize(true);
+//                defBind.myReCView.setAdapter(adapter);
+//                defBind.myReCView.setLayoutManager(new LinearLayoutManager(DefectActivity.this));
+//                defBind.myReCView.setHasFixedSize(true);
                 adapter.notifyDataSetChanged();
 
             }
