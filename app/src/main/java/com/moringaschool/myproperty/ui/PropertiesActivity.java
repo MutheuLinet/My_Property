@@ -40,6 +40,7 @@ import com.moringaschool.myproperty.models.Constants;
 import com.moringaschool.myproperty.models.Defect;
 import com.moringaschool.myproperty.models.Property;
 import com.moringaschool.myproperty.models.PropertyManager;
+import com.moringaschool.myproperty.models.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,6 +142,10 @@ public class PropertiesActivity extends AppCompatActivity implements View.OnClic
                 String propertyName = name.getEditText().getText().toString().trim();
                 String propertyLocation = location.getEditText().getText().toString().trim();
 
+                if (!Validator.validateName(name) || !Validator.validateName(location)){
+                    return;
+                }
+
                 Property property = new Property(propertyName, pref.getString(Constants.NAME, ""), propertyLocation);
                 call2 = calls.addProperty(property);
 
@@ -192,15 +197,22 @@ public class PropertiesActivity extends AppCompatActivity implements View.OnClic
         call1.clone().enqueue(new Callback<List<Property>>() {
             @Override
             public void onResponse(Call<List<Property>> call, Response<List<Property>> response) {
-                allProperties = response.body();
-                adapter = new PropertyRecAdapter(allProperties, PropertiesActivity.this);
-                properBind.myRec.setAdapter(adapter);
-                properBind.myRec.setLayoutManager(new LinearLayoutManager(PropertiesActivity.this, RecyclerView.HORIZONTAL, false));
-                properBind.myRec.setHasFixedSize(true);
-            }
+                if (response.isSuccessful()){
+                    allProperties = response.body();
+                    adapter = new PropertyRecAdapter(allProperties, PropertiesActivity.this);
+                    properBind.myRec.setAdapter(adapter);
+                    properBind.myRec.setLayoutManager(new LinearLayoutManager(PropertiesActivity.this, RecyclerView.HORIZONTAL, false));
+                    properBind.myRec.setHasFixedSize(true);
 
+                    successfull();
+                }else{
+                    unSuccessfull();
+                }
+            }
             @Override
             public void onFailure(Call<List<Property>> call, Throwable t) {
+                unSuccessfull();
+
                 String error = t.getMessage();
                 Toast.makeText(PropertiesActivity.this, error, Toast.LENGTH_SHORT).show();
             }
@@ -210,12 +222,16 @@ public class PropertiesActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<List<Defect>> call, Response<List<Defect>> response) {
                 if (response.isSuccessful()){
+                    if (response.body() != null){
+                        allDefects = response.body();
+                        adp = new DefectRecAdapter(allDefects, PropertiesActivity.this);
+                        properBind.recView.setAdapter(adp);
+                        properBind.recView.setHasFixedSize(true);
+                        properBind.recView.setLayoutManager(new LinearLayoutManager(PropertiesActivity.this));
+                    }else{
+                        properBind.title2.setText("No requests available");
+                    }
 
-                    allDefects = response.body();
-                    adp = new DefectRecAdapter(allDefects, PropertiesActivity.this);
-                    properBind.recView.setAdapter(adp);
-                    properBind.recView.setHasFixedSize(true);
-                    properBind.recView.setLayoutManager(new LinearLayoutManager(PropertiesActivity.this));
                 }else{
                     Toast.makeText(PropertiesActivity.this,"Something happened", Toast.LENGTH_SHORT).show();
 
@@ -231,4 +247,28 @@ public class PropertiesActivity extends AppCompatActivity implements View.OnClic
         });
 
     }
+
+    public void successfull(){
+        properBind.cont1.setVisibility(View.VISIBLE);
+        properBind.title.setVisibility(View.VISIBLE);
+        properBind.add.setVisibility(View.VISIBLE);
+        properBind.myRec.setVisibility(View.VISIBLE);
+        properBind.title2.setVisibility(View.VISIBLE);
+        properBind.add2.setVisibility(View.VISIBLE);
+        properBind.recView.setVisibility(View.VISIBLE);
+        properBind.progress.setVisibility(View.GONE);
+    }
+
+    public void unSuccessfull(){
+        properBind.cont1.setVisibility(View.GONE);
+        properBind.title.setVisibility(View.VISIBLE);
+        properBind.title.setText("Please wait for some few minutes.");
+        properBind.add.setVisibility(View.GONE);
+        properBind.myRec.setVisibility(View.GONE);
+        properBind.title2.setVisibility(View.GONE);
+        properBind.add2.setVisibility(View.VISIBLE);
+        properBind.recView.setVisibility(View.GONE);
+        properBind.progress.setVisibility(View.VISIBLE);
+    }
+
 }
