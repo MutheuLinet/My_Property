@@ -37,9 +37,6 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
     Property property;
     PropertyManager manager;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +49,6 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
         addBind.submit.setOnClickListener(this);
         myAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
-
     }
 
     @Override
@@ -81,7 +77,7 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
             public void onResponse(Call<PropertyManager> call, Response<PropertyManager> response) {
                 if (response.isSuccessful()){
 
-                    Toast.makeText(AddManagerActivity.this, "Tunaelekea", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddManagerActivity.this, "Manager Added", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(AddManagerActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
                 }
@@ -109,13 +105,12 @@ public class AddManagerActivity extends AppCompatActivity implements View.OnClic
                             Toast.makeText(AddManagerActivity.this, "User created successfully "+name, Toast.LENGTH_SHORT).show();
 
                             startActivity(intent);
-                            Toast.makeText(AddManagerActivity.this, "Kuja Wewe", Toast.LENGTH_SHORT).show();
                         }
                     });
 
 
                 }else{
-                    Toast.makeText(AddManagerActivity.this, "Sema Kabisa", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddManagerActivity.this, "User not created successfully", Toast.LENGTH_SHORT).show();
                 }
             }
 

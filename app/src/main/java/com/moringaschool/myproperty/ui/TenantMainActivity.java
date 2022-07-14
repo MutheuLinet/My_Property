@@ -53,7 +53,7 @@ public class TenantMainActivity extends AppCompatActivity implements View.OnClic
 
         allUnits = new ArrayList<>();
         tenantName = pref.getString(Constants.TENANT_NAME, "");
-        mainTenantBind.managerName.setText("Hey "+ tenantName);
+        mainTenantBind.managerName.setText("Hey, "+ tenantName);
         mainTenantBind.questType.setText("Building Name: "+ pref.getString(Constants.PROPERTY_NAME, ""));
         mainTenantBind.questAns.setText("House name: "+ pref.getString(Constants.UNIT_NAME, ""));
         mainTenantBind.questMode.setText("Manager in charge: "+ pref.getString(Constants.DEFECT_MANAGER_NAME, ""));

@@ -94,10 +94,10 @@ public class DefectFragment extends Fragment {
         defBind.catName.setText("Defect: " + defect.getDescription());
         defBind.questType.setText("Unit Name: "+defect.getUnit_name());
         defBind.contractorName.setText(defect.getDescription());
-        defBind.phone.setText("The described defect has been posted by the above named tenant in his current House. It is adivasable to assign a relevant contractor to fix the problem before it damages your property. It is advisable to look for contractors near the location of the property the tenant live in.");
-        defBind.locat.setText("You can use the plus button indicated above to assign a contractor to the given defect.");
+        defBind.phone.setText("Please assign a relevant contractor to fix the problem before it damages your property.");
+        defBind.locat.setText("Use the plus button above to assign a contractor to the given defect.");
         String date = DateFormat.getDateTimeInstance().format(defect.getCreated_at());
-        defBind.tenantName.setText("Found in property: "+defect.getProperty_name());
+        defBind.tenantName.setText("Found in: "+ defect.getProperty_name());
         defBind.tenantDes.setText("Posted in: "+ date);
 
         ref = FirebaseDatabase.getInstance().getReference();
@@ -114,7 +114,7 @@ public class DefectFragment extends Fragment {
                     String tenantEmail = snapshot.child(defect.getTenant_id()).child("tenant_email").getValue(String.class);
                     tenantId = snapshot.child(defect.getTenant_id()).child("tenant_id").getValue(String.class);
 
-                    defBind.questAns.setText("Unit tenant: "+tenantName);
+                    defBind.questAns.setText("Unit Tenant: "+tenantName);
                     defBind.questMode.setText(tenantPhone);
                     defBind.location.setText(tenantEmail);
                 }

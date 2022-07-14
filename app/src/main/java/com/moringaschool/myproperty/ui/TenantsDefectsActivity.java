@@ -50,7 +50,7 @@ public class TenantsDefectsActivity extends AppCompatActivity {
 
         allDefects = new ArrayList<>();
 
-        tenBind.managerName.setText("Hey "+ tenantName);
+        tenBind.managerName.setText("Hey, "+ tenantName);
 
         calls = RetrofitClient.getClient();
         call = calls.tenantDefects(tenantId);
