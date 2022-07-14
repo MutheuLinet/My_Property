@@ -30,6 +30,7 @@ import com.moringaschool.myproperty.models.Constants;
 import com.moringaschool.myproperty.models.Defect;
 import com.moringaschool.myproperty.models.DoneDefect;
 import com.moringaschool.myproperty.models.Tenant;
+import com.moringaschool.myproperty.models.Validator;
 import com.moringaschool.myproperty.ui.PropertiesActivity;
 import com.moringaschool.myproperty.ui.TenantDashboardActivity;
 import com.moringaschool.myproperty.ui.TenantLoginActivity;
@@ -153,6 +154,10 @@ public class DefectFragment extends Fragment {
                 String contactorName = name.getEditText().getText().toString().trim();
                 String contactorPhone = phone.getEditText().getText().toString().trim();
                 String contactorLocation = location.getEditText().getText().toString().trim();
+
+                if(!Validator.validateName(name) || !Validator.validatePhone(phone) || !Validator.validateName(location)){
+                    return;
+                }
 
                 DoneDefect doneDefect = new DoneDefect(defect.getDescription(),defect.getString_uri(),contactorName,contactorPhone,contactorLocation,defect.getManager_name(),defect.getTenant_id());
                 call = calls.addDefect(doneDefect);
