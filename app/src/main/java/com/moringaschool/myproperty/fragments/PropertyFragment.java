@@ -25,6 +25,7 @@ import com.moringaschool.myproperty.databinding.FragmentPropertyBinding;
 import com.moringaschool.myproperty.models.Constants;
 import com.moringaschool.myproperty.models.Property;
 import com.moringaschool.myproperty.models.Unit;
+import com.moringaschool.myproperty.models.Validator;
 import com.moringaschool.myproperty.ui.PropertiesActivity;
 
 import java.io.Serializable;
@@ -125,6 +126,10 @@ public class PropertyFragment extends Fragment {
             public void onClick(View v) {
                 String unitName = name.getEditText().getText().toString().trim();
                 String unitRooms = rooms.getEditText().getText().toString().trim();
+
+                if (!Validator.validateName(name) || !Validator.validateName(rooms)){
+                    return;
+                }
 
                 Unit unit = new Unit(unitName, unitRooms, property.getProperty_name());
 
