@@ -19,6 +19,9 @@
         android:theme="@style/Theme.MyProperty"
         tools:targetApi="31">
         <activity
+            android:name=".ui.UnitDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ManagersDoneDefects"
             android:exported="false" />
         <activity
