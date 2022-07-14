@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.moringaschool.myproperty.databinding.ActivityLoginBinding;
 import com.moringaschool.myproperty.models.Constants;
+import com.moringaschool.myproperty.models.Validator;
 
 public class ManagerLoginActivity extends AppCompatActivity implements View.OnClickListener{
     ActivityLoginBinding logBind;
@@ -49,12 +50,21 @@ public class ManagerLoginActivity extends AppCompatActivity implements View.OnCl
         String email = logBind.userEmail.getEditText().getText().toString().trim();
         String password = logBind.password.getEditText().getText().toString().trim();
 
+        if(!Validator.validateEmail(logBind.userEmail) || !Validator.validatePass(logBind.password)){
+            return;
+        }
+
         myDataEditor.putString(Constants.EMAIL, email).apply();
 
         myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
+
+                logBind.password.setErrorEnabled(false);
                 Intent intent = new Intent(ManagerLoginActivity.this, PropertiesActivity.class);
                 startActivity(intent);
+            }else{
+                logBind.password.setError("Check credentials and try again");
+                logBind.password.setErrorEnabled(true);
             }
         });
     }
