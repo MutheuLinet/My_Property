@@ -67,9 +67,9 @@ public class UnitRecAdapter extends RecyclerView.Adapter<UnitRecAdapter.myHolder
                 if (response.body() != null){
                     tenant = response.body();
                     holder.tenantName1.setText("Occupied by: "+tenant.getTenant_name());
-                    holder.tenantPhone2.setText(tenant.getTenant_phone());
+                    holder.tenantPhone2.setText("Mobile number: "+tenant.getTenant_phone());
                     String date = DateFormat.getDateTimeInstance().format(tenant.getJoined());
-                    holder.unitRooms.setText(date);
+                    holder.date.setText(date);
                     holder.add.setVisibility(View.GONE);
                 }else{
                     holder.tenantName1.setText("Vacant");
@@ -93,7 +93,7 @@ public class UnitRecAdapter extends RecyclerView.Adapter<UnitRecAdapter.myHolder
     }
 
     public class myHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, tenantName1, tenantPhone2, unitRooms;
+        TextView name, tenantName1, tenantPhone2, unitRooms, date;
         ImageView add, remove;
         BottomSheetDialog dialog;
         Unit unit;
@@ -110,6 +110,8 @@ public class UnitRecAdapter extends RecyclerView.Adapter<UnitRecAdapter.myHolder
             tenantPhone2 = itemView.findViewById(R.id.quest_mode);
             unitRooms = itemView.findViewById(R.id.location);
             remove = itemView.findViewById(R.id.remove);
+            date = itemView.findViewById(R.id.joined);
+
             add = itemView.findViewById(R.id.add);
 
             pref = PreferenceManager.getDefaultSharedPreferences(cont);
@@ -125,7 +127,6 @@ public class UnitRecAdapter extends RecyclerView.Adapter<UnitRecAdapter.myHolder
 
         public void setData(Unit unit){
             name.setText(unit.getUnit_name());
-            tenantName1.setVisibility(View.GONE);
             unitRooms.setText("This unit contains "+unit.getUnit_rooms() + " rooms");
             this.unit = unit;
         }

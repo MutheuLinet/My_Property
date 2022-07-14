@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.moringaschool.myproperty.R;
 import com.moringaschool.myproperty.databinding.ActivityTenantLoginBinding;
 import com.moringaschool.myproperty.models.Constants;
+import com.moringaschool.myproperty.models.Validator;
 
 public class TenantLoginActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityTenantLoginBinding tenantBinding;
@@ -52,6 +53,10 @@ public class TenantLoginActivity extends AppCompatActivity implements View.OnCli
             String tenantEmail = tenantBinding.userEmail.getEditText().getText().toString().trim();
             String tenantPassword = tenantBinding.password.getEditText().getText().toString().trim();
 
+            if(!Validator.validateEmail(tenantBinding.userEmail) || !Validator.validatePass(tenantBinding.password)){
+                return;
+            }
+
             Query query = ref.orderByChild("tenant_id").equalTo(tenantPassword);
 
             query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -67,6 +72,8 @@ public class TenantLoginActivity extends AppCompatActivity implements View.OnCli
                         String managerName = snapshot.child(tenantPassword).child("manager_name").getValue(String.class);
 
                         if (tenantEmail.equals(emailFromDb) && tenantPassword.equals(tenantId)){
+                            tenantBinding.userEmail.setErrorEnabled(false);
+                            tenantBinding.password.setErrorEnabled(false);
 
                             prefEditor.putString(Constants.TENANT_ID, tenantId).apply();
                             prefEditor.putString(Constants.PROPERTY_NAME, propertyName).apply();
@@ -77,8 +84,18 @@ public class TenantLoginActivity extends AppCompatActivity implements View.OnCli
                             Intent intent = new Intent(TenantLoginActivity.this, TenantMainActivity.class);
                             startActivity(intent);
 
+                        }else if(tenantEmail.equals(emailFromDb) && !tenantPassword.equals(tenantId)){
+                            tenantBinding.password.setErrorEnabled(true);
+                            tenantBinding.password.setError("Check your password and try again");
+                        }else if(!tenantEmail.equals(emailFromDb) && tenantPassword.equals(tenantId)){
+                            tenantBinding.userEmail.setErrorEnabled(true);
+                            tenantBinding.password.setError("Check your email and try again");
                         }else{
-                            Toast.makeText(TenantLoginActivity.this, "Please check your credentials and login again", Toast.LENGTH_SHORT).show();
+                            tenantBinding.userEmail.setErrorEnabled(true);
+                            tenantBinding.password.setErrorEnabled(true);
+                            tenantBinding.password.setError("Check your password and try again");
+                            tenantBinding.password.setError("Check your email and try again");
+
                         }
 
                     }
