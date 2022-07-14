@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -64,11 +65,15 @@ public class TenantsDefectsActivity extends AppCompatActivity {
                     tenBind.myRec.setAdapter(adp);
                     tenBind.myRec.setHasFixedSize(true);
                     tenBind.myRec.setLayoutManager(new LinearLayoutManager(TenantsDefectsActivity.this));
+                    successful();
+                }else{
+                    unSuccessful();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Defect>> call, Throwable t) {
+                unSuccessful();
                 String error = t.getMessage();
                 Toast.makeText(TenantsDefectsActivity.this, error, Toast.LENGTH_SHORT).show();
             }
@@ -104,5 +109,25 @@ public class TenantsDefectsActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void successful(){
+        tenBind.progress.setVisibility(View.GONE);
+        tenBind.animationView.setVisibility(View.VISIBLE);
+        tenBind.profileImage.setVisibility(View.VISIBLE);
+        tenBind.logo.setVisibility(View.VISIBLE);
+        tenBind.cont1.setVisibility(View.VISIBLE);
+        tenBind.myRec.setVisibility(View.VISIBLE);
+        tenBind.title.setVisibility(View.VISIBLE);
+    }
+
+    public void unSuccessful(){
+        tenBind.progress.setVisibility(View.VISIBLE);
+        tenBind.animationView.setVisibility(View.GONE);
+        tenBind.profileImage.setVisibility(View.GONE);
+        tenBind.logo.setVisibility(View.GONE);
+        tenBind.cont1.setVisibility(View.GONE);
+        tenBind.myRec.setVisibility(View.GONE);
+        tenBind.title.setVisibility(View.GONE);
     }
 }
