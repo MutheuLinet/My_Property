@@ -72,14 +72,16 @@ public class TenantMainActivity extends AppCompatActivity implements View.OnClic
                     mainTenantBind.recView.setAdapter(adp);
                     mainTenantBind.recView.setHasFixedSize(true);
                     mainTenantBind.recView.setLayoutManager(new LinearLayoutManager(TenantMainActivity.this));
-
+                    successful();
+                }else{
+                    unSuccessful();
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<Unit>> call, Throwable t) {
-
+                unSuccessful();
             }
         });
 //        call = calls.tenantDoneDefects(pref.getString(Constants.TENANT_ID, ""));
@@ -160,5 +162,33 @@ public class TenantMainActivity extends AppCompatActivity implements View.OnClic
         if (v == mainTenantBind.add){
             startActivity(new Intent(TenantMainActivity.this,TenantDefectActivity.class));
         }
+    }
+
+    public void successful(){
+        mainTenantBind.progress.setVisibility(View.GONE);
+        mainTenantBind.animationView.setVisibility(View.VISIBLE);
+        mainTenantBind.profileImage.setVisibility(View.VISIBLE);
+        mainTenantBind.logo.setVisibility(View.VISIBLE);
+        mainTenantBind.cont1.setVisibility(View.VISIBLE);
+        mainTenantBind.myRec.setVisibility(View.VISIBLE);
+        mainTenantBind.title2.setVisibility(View.VISIBLE);
+        mainTenantBind.add.setVisibility(View.VISIBLE);
+        mainTenantBind.title.setVisibility(View.VISIBLE);
+        mainTenantBind.add2.setVisibility(View.VISIBLE);
+        mainTenantBind.recView.setVisibility(View.VISIBLE);
+    }
+
+    public void unSuccessful(){
+        mainTenantBind.progress.setVisibility(View.VISIBLE);
+        mainTenantBind.animationView.setVisibility(View.GONE);
+        mainTenantBind.profileImage.setVisibility(View.GONE);
+        mainTenantBind.logo.setVisibility(View.GONE);
+        mainTenantBind.cont1.setVisibility(View.GONE);
+        mainTenantBind.myRec.setVisibility(View.GONE);
+        mainTenantBind.title2.setVisibility(View.GONE);
+        mainTenantBind.add.setVisibility(View.GONE);
+        mainTenantBind.title.setVisibility(View.GONE);
+        mainTenantBind.add2.setVisibility(View.GONE);
+        mainTenantBind.recView.setVisibility(View.GONE);
     }
 }
