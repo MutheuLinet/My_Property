@@ -1,6 +1,7 @@
 package com.moringaschool.myproperty.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -24,10 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.myproperty.R;
 import com.moringaschool.myproperty.api.ApiCalls;
 import com.moringaschool.myproperty.api.RetrofitClient;
+import com.moringaschool.myproperty.databinding.ActivityUnitDetailsBinding;
 import com.moringaschool.myproperty.models.Constants;
 import com.moringaschool.myproperty.models.Tenant;
 import com.moringaschool.myproperty.models.Unit;
+import com.moringaschool.myproperty.models.Validator;
+import com.moringaschool.myproperty.ui.UnitDetailsActivity;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.List;
 
@@ -80,7 +85,6 @@ public class UnitRecAdapter extends RecyclerView.Adapter<UnitRecAdapter.myHolder
             @Override
             public void onFailure(Call<Tenant> call, Throwable t) {
                 String error = t.getMessage();
-                Toast.makeText(cont, error, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -123,6 +127,17 @@ public class UnitRecAdapter extends RecyclerView.Adapter<UnitRecAdapter.myHolder
             remove.setOnClickListener(this);
             dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getLayoutPosition();
+                    Intent intent = new Intent(cont, UnitDetailsActivity.class);
+                    intent.putExtra("position", position);
+                    intent.putExtra("allUnits", (Serializable) allUnits);
+                    cont.startActivity(intent);
+                }
+            });
         }
 
         public void setData(Unit unit){
@@ -159,6 +174,10 @@ public class UnitRecAdapter extends RecyclerView.Adapter<UnitRecAdapter.myHolder
                     String tenantPhone = phone.getEditText().getText().toString().trim();
                     String tenantEmail = email.getEditText().getText().toString().trim();
                     String tenantId = id.getEditText().getText().toString().trim();
+
+                    if(!Validator.validateName(name) || !Validator.validatePhone(phone) || !Validator.validateEmail(email) || !Validator.validatePass(id)){
+                        return;
+                    }
 
                     tenant = new Tenant(tenantName,tenantEmail,tenantPhone,tenantId, unit.getProperty_name(), unit.getUnit_name(),pref.getString(Constants.NAME, "") );
 
