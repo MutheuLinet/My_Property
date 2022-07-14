@@ -6,7 +6,17 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".ui.TenantsDoneDefects">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 <com.airbnb.lottie.LottieAnimationView
+    android:visibility="gone"
     android:id="@+id/animation_view"
     android:layout_width="150dp"
     android:layout_height="100dp"
@@ -20,6 +30,7 @@ tools:context=".ui.TenantsDoneDefects">
     app:lottie_rawRes="@raw/repairman" />
 
 <com.google.android.material.imageview.ShapeableImageView
+    android:visibility="gone"
     android:layout_width="50dp"
     android:layout_height="50dp"
     android:id="@+id/profileImage"
@@ -34,6 +45,7 @@ tools:context=".ui.TenantsDoneDefects">
     app:strokeColor="@color/white" />
 
 <TextView
+    android:visibility="gone"
     android:id="@+id/logo"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -49,7 +61,7 @@ tools:context=".ui.TenantsDoneDefects">
 
 
 <androidx.constraintlayout.widget.ConstraintLayout
-
+    android:visibility="gone"
     android:background="@drawable/layout"
     android:backgroundTint="@color/blue1"
     android:id="@+id/cont1"
@@ -100,6 +112,7 @@ tools:context=".ui.TenantsDoneDefects">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 <TextView
+    android:visibility="gone"
     android:id="@+id/title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -112,6 +125,7 @@ tools:context=".ui.TenantsDoneDefects">
     app:layout_constraintBottom_toTopOf="@+id/myRec"/>
 
 <ImageView
+    android:visibility="gone"
     android:id="@+id/add"
     android:layout_width="wrap_content"
     android:adjustViewBounds="true"
@@ -124,6 +138,7 @@ tools:context=".ui.TenantsDoneDefects">
     app:layout_constraintBottom_toBottomOf="@+id/title"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:background="@color/white"
         android:id="@+id/myRec"
         android:layout_width="match_parent"
