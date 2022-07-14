@@ -56,9 +56,9 @@ public class TenantUnitRecAdapter extends RecyclerView.Adapter<TenantUnitRecAdap
                 if (response.isSuccessful()){
                     tenant = response.body();
                     holder.tenantName1.setText("Occupied by: "+tenant.getTenant_name());
-                    holder.tenantPhone2.setText(tenant.getTenant_phone());
+                    holder.tenantPhone2.setText("Mobile number"+tenant.getTenant_phone());
                     String date = DateFormat.getDateTimeInstance().format(tenant.getJoined());
-                    holder.joined.setText(date);
+                    holder.joined.setText("Joined in: " +date);
 
                 }else{
                     holder.tenantName1.setText("Vacant");
