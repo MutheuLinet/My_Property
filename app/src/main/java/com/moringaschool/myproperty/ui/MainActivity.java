@@ -63,13 +63,17 @@ public class MainActivity extends AppCompatActivity {
                     mainBind.recView.setAdapter(adp);
                     mainBind.recView.setHasFixedSize(true);
                     mainBind.recView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+                    successful();
                 }else{
+                    unSuccessful();
                     Toast.makeText(MainActivity.this, "Something happened try again later", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Tenant>> call, Throwable t) {
+                unSuccessful();
                 String error = t.getMessage();
                 Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
             }
@@ -103,6 +107,20 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void successful(){
+        mainBind.cont1.setVisibility(View.VISIBLE);
+        mainBind.title.setVisibility(View.VISIBLE);
+        mainBind.recView.setVisibility(View.VISIBLE);
+        mainBind.progress.setVisibility(View.GONE);
+    }
+
+    public void unSuccessful(){
+        mainBind.cont1.setVisibility(View.GONE);
+        mainBind.title.setVisibility(View.GONE);
+        mainBind.recView.setVisibility(View.GONE);
+        mainBind.progress.setVisibility(View.VISIBLE);
     }
 
 
