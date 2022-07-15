@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.TenantDefectActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_view"
+                android:clickable="true"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:background="@color/white"
+                android:src="@drawable/cccccc"
+                app:civ_border_color="@color/gold"
+                app:civ_border_width="2dp"
+                android:paddingTop="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/capture_image_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Capture Image"
+                app:icon="@drawable/ic_baseline_camera_alt_24"
+                app:iconTint="@color/blue"
+                android:textAllCaps="false"
+                app:iconSize="16dp"
+                app:iconGravity="textEnd"
+                app:cornerRadius="32dp"
+                android:textColor="@color/blue"
+                android:fontFamily="@font/candal"
+                android:padding="8dp"
+                android:elevation="16dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                />
+            <LinearLayout
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/capture_image_btn">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/defectDescriptionEditText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="16dp"
+                    android:hint="Description of defect">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/buildingNameET"
+                    android:elevation="16dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Name of building"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:textStyle="bold"
+                         />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/houseNumberET"
+                    android:elevation="16dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="House number"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:enabled="false"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/login"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/blue"-->
+<!--                    android:fontFamily="@font/candal"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:elevation="16dp"-->
+<!--                    android:backgroundTint="@color/light_blue"                    -->
+<!--                    android:layout_gravity="right"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:text="Submit" />-->
+
+            </LinearLayout>
+
+
+<!--            <androidx.appcompat.widget.AppCompatEditText-->
+<!--                android:id="@+id/defectDescriptionEditText"-->
+<!--                android:layout_width="370dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                app:layout_constraintRight_toRightOf="parent"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/capture_image_btn"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:hint="Description of defect"-->
+<!--                android:textColorHint="@color/navy_blue"-->
+<!--                android:fontFamily="@font/eb_garamond"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:padding="8dp"/>-->
+
+<!--            <androidx.appcompat.widget.AppCompatEditText-->
+<!--                android:id="@+id/buildingNameET"-->
+<!--                android:layout_width="370dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                app:layout_constraintRight_toRightOf="parent"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/defectDescriptionEditText"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:hint="Select name of the building"-->
+<!--                android:textColorHint="@color/navy_blue"-->
+<!--                android:fontFamily="@font/eb_garamond"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:padding="8dp"/>-->
+
+<!--            <androidx.appcompat.widget.AppCompatEditText-->
+<!--                android:id="@+id/houseNumberET"-->
+<!--                android:layout_width="370dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                app:layout_constraintRight_toRightOf="parent"-->
+<!--                app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/buildingNameET"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:hint="Enter the house number"-->
+<!--                android:textColorHint="@color/navy_blue"-->
+<!--                android:fontFamily="@font/eb_garamond"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:padding="8dp"/>-->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submitDefectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                app:cornerRadius="32dp"
+                android:textColor="@color/blue"
+                android:fontFamily="@font/candal"
+                android:padding="8dp"
+                android:textAllCaps="false"
+                android:elevation="16dp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.moringaschool.myproperty.R;
 import com.moringaschool.myproperty.databinding.ActivityLoginBinding;
 import com.moringaschool.myproperty.models.Constants;
+import com.moringaschool.myproperty.models.Validator;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class ManagerLoginActivity extends AppCompatActivity implements View.OnClickListener{
     ActivityLoginBinding logBind;
     FirebaseAuth myAuth;
     SharedPreferences myData;
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == logBind.addManager){
-            Intent intent = new Intent(LoginActivity.this, AddManagerActivity.class);
+            Intent intent = new Intent(ManagerLoginActivity.this, AddManagerActivity.class);
             startActivity(intent);
         }else if(v == logBind.login){
             login();
@@ -49,12 +49,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         String email = logBind.userEmail.getEditText().getText().toString().trim();
         String password = logBind.password.getEditText().getText().toString().trim();
-//        myDataEditor.putString(Constants.NAME,)
+
+        if(!Validator.validateEmail(logBind.userEmail) || !Validator.validatePass(logBind.password)){
+            return;
+        }
+
+        myDataEditor.putString(Constants.EMAIL, email).apply();
 
         myAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
-                Intent intent = new Intent(LoginActivity.this, ManagerDashboardActivity.class);
+
+                logBind.password.setErrorEnabled(false);
+                Intent intent = new Intent(ManagerLoginActivity.this, PropertiesActivity.class);
                 startActivity(intent);
+            }else{
+                logBind.password.setError("Check credentials and try again");
+                logBind.password.setErrorEnabled(true);
             }
         });
     }

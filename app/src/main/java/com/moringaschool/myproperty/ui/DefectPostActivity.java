@@ -8,10 +8,12 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -45,6 +47,7 @@ public class DefectPostActivity extends AppCompatActivity {
     StorageReference storageReference;
     AutoCompleteTextView buildingNameET;
     AutoCompleteTextView tenantNameET;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class DefectPostActivity extends AppCompatActivity {
         mainBind = ActivityDefectPostBinding.inflate(getLayoutInflater());
         setContentView(mainBind.getRoot());
         FirebaseApp.initializeApp(this);
+
 
         // get the Firebase  storage reference
         storage = FirebaseStorage.getInstance();
@@ -254,17 +258,17 @@ public class DefectPostActivity extends AppCompatActivity {
         String houseNumber = mainBind.houseNumberET.getText().toString().trim();
 
         uploadImage();
-        defect = new Defect(defectDescription, buildingName, houseNumber,downloadUri);
-        defect.setStingUri(downloadUri);
+//        defect = new Defect(defectDescription, buildingName, houseNumber,downloadUri);
+//        defect.setStingUri(downloadUri);
 //
 //        Toast
 //                .makeText(DefectPostActivity.this,
 //                        downloadUri,
 //                        Toast.LENGTH_SHORT)
 //                .show();
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference("defects");
-        databaseReference.push().setValue(defect);
+//        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+//        DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference("defects");
+//        databaseReference.setValue(defect);
 
 
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SelectActivity"
+    android:background="@drawable/bg1"
+    >
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView"
+        android:layout_width="238dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        app:srcCompat="@drawable/trns_logo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/managerRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:fontFamily="@font/candal"
+        app:icon="@drawable/ic_baseline_arrow_forward_24"
+        app:cornerRadius="32dp"
+        app:iconGravity="end"
+        android:padding="8dp"
+        android:elevation="24dp"
+        android:text="I AM A PROPERTY MANAGER"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tenantLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I AM A TENANT"
+        app:icon="@drawable/ic_baseline_arrow_forward_24_blue"
+        app:iconGravity="end"
+        app:iconTint="@color/blue"
+        app:cornerRadius="32dp"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/candal"
+        android:padding="8dp"
+        android:elevation="16dp"
+        android:backgroundTint="@color/gold"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/managerRegister"
+        app:layout_constraintStart_toStartOf="@+id/managerRegister"
+        app:layout_constraintTop_toBottomOf="@+id/managerRegister" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/gold"
+    android:background="@drawable/layout"
+    android:layout_margin="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cont1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="4dp"
+        >
+
+        <TextView
+            android:id="@+id/quest_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Unit name"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/quest_ans"
+            app:layout_constraintRight_toLeftOf="@id/remove"
+            app:layout_constraintStart_toEndOf="@id/animation_view2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/quest_ans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tenant name"
+            android:textColor="@color/blue"
+            app:layout_constraintBottom_toTopOf="@id/location"
+            app:layout_constraintRight_toLeftOf="@id/quest_mode"
+            app:layout_constraintStart_toStartOf="@id/quest_type"
+            app:layout_constraintTop_toBottomOf="@id/quest_type" />
+
+        <TextView
+            android:id="@+id/quest_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="tenant phone"
+            android:textColor="@color/blue"
+            app:layout_constraintStart_toStartOf="@id/quest_ans"
+            app:layout_constraintBottom_toTopOf="@id/location"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/quest_ans" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/blue"
+            android:text="unit description"
+            app:layout_constraintBottom_toBottomOf="@id/animation_view2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@id/animation_view2"
+            app:layout_constraintTop_toBottomOf="@id/quest_ans" />
+
+        <TextView
+            android:id="@+id/joined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/blue"
+            android:text="unit description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@id/location"
+            app:layout_constraintTop_toBottomOf="@id/location" />
+
+        <ImageView
+            android:id="@+id/animation_view2"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/unit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/quest_ans"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/remove"
+            app:layout_constraintTop_toTopOf="@id/remove" />
+
+        <ImageView
+            android:id="@+id/remove"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/remove"
+            app:layout_constraintEnd_toStartOf="@id/add"
+            app:layout_constraintLeft_toRightOf="@id/quest_type"
+            app:layout_constraintBottom_toBottomOf="@id/quest_type"
+            app:layout_constraintTop_toTopOf="@id/quest_type" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

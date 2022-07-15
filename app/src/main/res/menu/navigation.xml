@@ -6,12 +6,17 @@
         android:icon="@drawable/home"
         android:title="Home"/>
     <item
-        android:id="@+id/properties"
-        android:icon="@drawable/house"
-        android:title="Properties"/>
+        android:id="@+id/tenants"
+        android:icon="@drawable/ic_baseline_people_24"
+        android:title="Tenants"/>
 
     <item
-        android:id="@+id/logout"
+        android:id="@+id/requests"
+        android:icon="@drawable/camera"
+        android:title="Done requests"/>
+
+    <item
+        android:id="@+id/back"
         android:icon="@drawable/logout"
         android:title="Logout"/>
 

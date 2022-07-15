@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.moringaschool.myproperty.R;
 
-public class ManagerDashboardActivity2 extends AppCompatActivity {
+public class DefectPostActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager_dashboard2);
+        setContentView(R.layout.activity_defect_post2);
     }
 }

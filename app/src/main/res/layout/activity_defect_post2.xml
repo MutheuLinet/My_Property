@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/camera_icon_size"
+    tools:context=".ui.DefectPostActivity2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/back_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/ic_back_arrow_back"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/goldlogo"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                app:strokeColor="@color/black"
+                app:strokeWidth="2dp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/report_defect_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/eb_garamond"
+                android:text="report a defect"
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/back_arrow" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_view"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="-2dp"
+                android:background="@color/light_grey"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/report_defect_title"
+                app:shapeAppearanceOverlay="@style/roundedImageView"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/capture_image_btn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view"
+                android:background="@color/blue"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="capture   image"
+                android:textColor="@color/white"
+                android:fontFamily="@font/eb_garamond"
+                android:textSize="16sp"/>
+            
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/defectDescriptionEditText"
+                android:layout_width="370dp"
+                android:layout_height="45dp"
+                android:background="@color/light_peach"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/capture_image_btn"
+                android:layout_marginTop="15dp"
+                android:hint="Description of defect"
+                android:textColorHint="@color/navy_blue"
+                android:fontFamily="@font/eb_garamond"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:padding="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/buildingNameET"
+                android:layout_width="370dp"
+                android:layout_height="45dp"
+                android:background="@color/light_peach"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defectDescriptionEditText"
+                android:layout_marginTop="15dp"
+                android:hint="Select name of the building"
+                android:textColorHint="@color/navy_blue"
+                android:fontFamily="@font/eb_garamond"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:padding="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/houseNumberET"
+                android:layout_width="370dp"
+                android:layout_height="45dp"
+                android:background="@color/light_peach"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buildingNameET"
+                android:layout_marginTop="15dp"
+                android:hint="Enter the house number"
+                android:textColorHint="@color/navy_blue"
+                android:fontFamily="@font/eb_garamond"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:padding="8dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submitDefectBtn"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:text="Submit"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/houseNumberET"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/eb_garamond"
+                android:textSize="16sp"
+                android:background="@color/blue"/>
+
+
+
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

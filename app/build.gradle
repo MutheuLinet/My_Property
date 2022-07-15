@@ -79,7 +79,7 @@ dependencies {
     //Lottie
     implementation "com.airbnb.android:lottie:5.2.0"
 
-    // circular imageview
+    //circular imageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }
